@@ -46,22 +46,33 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <label className="label">Enter username to search on github</label>
-        <input
-          value={this.state.userName}
-          type="text"
-          onChange={this.handleChange}
-        />
-        <button
-          className="button"
-          onClick={() => this.getData(this.state.userName)}
-        >
-          Click to Search
-        </button>
+        <div className="inputBar">
+          <label className="label">Enter username to search on github</label>
+
+          <div className="input-icons">
+            <i className="fa fa-search icon"> </i>
+            <input
+              className="input-field"
+              value={this.state.userName}
+              type="text"
+              onChange={this.handleChange}
+              placeholder="Username"
+            />
+          </div>
+
+          <button
+            className="button"
+            onClick={() => this.getData(this.state.userName)}
+          >
+            Click to Search
+          </button>
+        </div>
+
         <ReactPlayer
           url="https://www.youtube.com/watch?v=UX2kf-XngE0"
           playing={false}
           controls
+          className='video-player'
         />
 
         <div className="left">
@@ -85,8 +96,15 @@ class App extends Component {
         <div className="right">
           {this.state.showDetail && (
             <div>
-              <label>Score :</label> <div> {this.state.userObject.score}</div>
-              <label>Id :</label><div> {this.state.userObject.id}</div>
+              <div>
+                {" "}
+                <label className="label">Score :</label>{" "}
+                {this.state.userObject.score}
+              </div>
+              <div>
+                {" "}
+                <label className="label">Id :</label> {this.state.userObject.id}
+              </div>
               <img src={this.state.userObject.avatar_url} />
             </div>
           )}

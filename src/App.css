@@ -31,20 +31,53 @@
   }
 }
 
+.inputBar {
+  display: flex;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
 .label {
   padding-right: 20px;
   font-weight: 600;
+  display: flex;
 }
 
 .button {
-  margin-left: 20px;
+  height: 30px;
+  margin-left: 130px;
 }
 
 .left {
+  margin-top: 30px;
   width: 50%;
   float: left;
 }
 .right {
+  margin-top: 30px;
   width: 50%;
   float: left;
+}
+
+.input-icons i {
+  position: absolute;
+}
+
+.input-icons {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.icon {
+  padding: 8px;
+  color: black;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  display: flex;
+  width: 200px;
+  padding-left: 40px;
+  text-align: left;
 }
