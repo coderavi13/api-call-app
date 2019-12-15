@@ -39,3 +39,12 @@
 .button {
   margin-left: 20px;
 }
+
+.left {
+  width: 50%;
+  float: left;
+}
+.right {
+  width: 50%;
+  float: left;
+}
