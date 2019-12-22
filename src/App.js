@@ -8,10 +8,12 @@ class App extends Component {
     super(props);
 
     this.state = {
-      userName: "coderavi13",
+      userName: "ravi",
       userList: [],
       showDetail: false,
-      userObject: {}
+      userObject: {},
+      checkedItems: new Map(),
+      selectedCount: 0,
     };
   }
 
@@ -26,6 +28,7 @@ class App extends Component {
       .get("https://api.github.com/search/users", {
         params: { q: data }
       })
+      //axios.get('https://api.github.com/search/users?q=tom&repos>=42&followers>=1000')
       .then(apiResponse => {
         console.log("ApiResponse", apiResponse.data.items);
         this.setState({
@@ -42,6 +45,20 @@ class App extends Component {
       userObject: userData
     });
   };
+
+  handleCheck = (e) => {
+    if ([]) {
+      console.log("Empty Array is truthy value")
+    }
+
+    const item = e.target.name;
+    const isChecked = e.target.checked;
+    const count = isChecked ? this.state.selectedCount + 1 : this.state.selectedCount - 1;
+    this.setState(prevState => ({
+      checkedItems: prevState.checkedItems.set(item, isChecked),
+      selectedCount: count,
+    }))
+  }
 
   render() {
     return (
@@ -66,6 +83,7 @@ class App extends Component {
           >
             Click to Search
           </button>
+          <label  > {this.state.selectedCount}</label>
         </div>
 
         <ReactPlayer
@@ -80,13 +98,18 @@ class App extends Component {
             <ul>
               {this.state.userList.map((user, index) => {
                 return (
-                  <li
-                    key={index}
-                    onClick={() => this.displayUserData(user)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    {user.login}
-                  </li>
+                  <div>
+                    <input type='checkbox' name={index} checked={this.state.isChecked} onChange={this.handleCheck}></input>
+                    <li
+                      key={index}
+                      onClick={() => this.displayUserData(user)}
+                      style={{ cursor: "pointer" }}
+                    >
+
+                      {user.login}
+                    </li>
+
+                  </div>
                 );
               })}
             </ul>
